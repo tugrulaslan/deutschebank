@@ -8,6 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.then;
 
 @ExtendWith(MockitoExtension.class)
@@ -28,6 +29,7 @@ public class DefaultSignalProcessorTest {
         defaultSignalProcessor.process(signal);
 
         //then
+        assertThat(defaultSignalProcessor.signalType()).isEqualTo(signal);
         then(algo).should().cancelTrades();
         then(algo).should().doAlgo();
     }
